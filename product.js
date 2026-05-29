@@ -1,4 +1,3 @@
-js
 import { db }
 from "./firebase.js";
 
@@ -66,13 +65,17 @@ snapshot.data();
 
 displayProduct(item);
 
-loadRelatedProducts(item.brand);
+loadRelatedProducts(
+item.brand
+);
 
 }
 
 // ======================
 // DISPLAY PRODUCT
 // ======================
+
+let sliderInterval;
 
 function displayProduct(item){
 
@@ -108,7 +111,9 @@ class="mainProductImage"
 >
 
 <div class="thumbContainer">
+
 ${thumbnails}
+
 </div>
 
 </div>
@@ -117,24 +122,42 @@ ${thumbnails}
 
 <h1>${item.name}</h1>
 
-<p>Brand: ${item.brand}</p>
+<p>🏷 Brand: ${item.brand}</p>
 
-<p>Price: $${item.price}</p>
+<p>💰 Price: $${item.price}</p>
 
-<p>Battery: ${item.batterySize}</p>
+<p>⭐ Rating: ${item.rating}</p>
 
-<p>Top Speed: ${item.topSpeed}</p>
+<p>🔋 Battery: ${item.batterySize}</p>
 
-<p>Rating: ${item.rating}</p>
+<p>🚀 Top Speed: ${item.topSpeed}</p>
 
-<p>Stock: ${item.stock}</p>
+<p>📅 Year: ${item.year}</p>
+
+<p>🛣 Mileage: ${item.mileage}</p>
+
+<p>🎨 Color: ${item.color}</p>
+
+<p>🪑 Seats: ${item.seats}</p>
+
+<p>⚡ Charging Time: ${item.chargingTime}</p>
+
+<p>📦 Stock: ${item.stock}</p>
 
 <p>Status: ${item.status}</p>
 
-<p>Description: ${item.description}</p>
+<p class="description">
+
+📝 ${item.description}
+
+</p>
 
 <button id="buyNow">
 Add To Cart
+</button>
+
+<button id="favoriteBtn">
+❤️ Favorite
 </button>
 
 </div>
@@ -145,10 +168,12 @@ Add To Cart
 
 activateGallery(images);
 
+startImageSlider(images);
+
 }
 
 // ======================
-// GALLERY
+// IMAGE GALLERY
 // ======================
 
 function activateGallery(images){
@@ -170,6 +195,10 @@ thumb.addEventListener(
 
 function(){
 
+clearInterval(
+sliderInterval
+);
+
 mainImage.src =
 images[index];
 
@@ -178,6 +207,40 @@ images[index];
 );
 
 });
+
+}
+
+// ======================
+// AUTO SLIDER
+// ======================
+
+function startImageSlider(images){
+
+if(images.length <= 1)
+return;
+
+const mainImage =
+document.getElementById(
+"mainProductImage"
+);
+
+let index = 0;
+
+sliderInterval =
+setInterval(()=>{
+
+index++;
+
+if(index >= images.length){
+
+index = 0;
+
+}
+
+mainImage.src =
+images[index];
+
+},2000);
 
 }
 
@@ -200,9 +263,13 @@ const item =
 docItem.data();
 
 if(
+
 item.brand === brand
+
 &&
+
 docItem.id !== productId
+
 ){
 
 html += `
@@ -218,7 +285,13 @@ width="200"
 
 <h3>${item.name}</h3>
 
-<p>$${item.price}</p>
+<p>
+💰 $${item.price}
+</p>
+
+<p>
+⭐ ${item.rating}
+</p>
 
 </a>
 
@@ -234,5 +307,9 @@ relatedProducts.innerHTML =
 html;
 
 }
+
+// ======================
+// INITIAL LOAD
+// ======================
 
 loadProduct();
