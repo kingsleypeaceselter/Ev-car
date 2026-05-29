@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Admin Panel</h1>
+
+<input type="text" id="name" placeholder="Car name">
+
+<input
+type="text"
+id="brand"
+placeholder="Brand"
+ />
+
+<input type="text" id="range" placeholder="Range">
+
+<input type="text" id="color" placeholder="Color">
+
+<input type="number" id="seats" placeholder="Seats">
+
+<input type="number" id="year" placeholder="Year">
+
+<input type="text" id="mileage" placeholder="Mileage">
+
+<input type="text" id="batterySize" placeholder="Battery Size">
+<input type="text" id="chargingTime" placeholder="Charging Time">
+
+<input
+type="number"
+id="stock"
+placeholder="Stock Quantity"
+/>
+
+<input type="text" id="topSpeed" placeholder="Top Speed">
+
+<input type="number" id="price" placeholder="Price">
+
+
+ <!-- Added Multiple Image Input -->
+    <input
+type="file"
+id="imageInput"
+accept="image/*"
+multiple
+>
+    
+    <!-- Added Container for Image Previews -->
+    <div id="imagePreviewContainer"></div>
+
+
+
+<select id="status">
+  <option value="available">Available</option>
+  <option value="preorder">Preorder</option>
+  <option value="outofstock">Out Of Stock</option>
+  <option value="comingsoon">
+Coming Soon
+</option>
+</select>
+
+<input
+type="number"
+id="rating"
+placeholder="Rating"
+>
+
+<input
+type="number"
+id="reviews"
+placeholder="Reviews"
+>
+
+<textarea
+id="description"
+placeholder="Description"
+></textarea>
+
+
+<button id="addProduct">Add Car</button>
+
+<hr>
+
+<h2>Uploaded Cars</h2>
+
+<div id="adminProducts"></div>
+
+<script type="module" src="admin.js"></script>
+
+</body>  
+</html>

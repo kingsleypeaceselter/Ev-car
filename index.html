@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>EV Cars</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+</head>
+
+<body>
+
+<h1>EV Cars ⚡</h1>
+
+<!-- SEARCH -->
+<input
+type="text"
+id="searchInput"
+placeholder="Search cars..."
+>
+
+<select id="sortSelect">
+
+<option value="">
+Sort Products
+</option>
+
+<option value="low">
+Price Low To High
+</option>
+
+<option value="high">
+Price High To Low
+</option>
+
+</select>
+
+<!-- PRODUCTS -->
+<div id="products"></div>
+
+<!-- PAGINATION -->
+<div id="pagination">
+
+<button id="prevBtn">
+Prev
+</button>
+
+<span id="pageInfo"></span>
+
+<button id="nextBtn">
+Next
+</button>
+
+</div>
+
+<!-- CART -->
+<h2>Cart 🛒</h2>
+
+<div id="cart"></div>
+
+<h2>Favorites ❤️</h2>
+
+<div id="favorites"></div>
+
+<div id="galleryModal">
+
+<button id="prevImage">
+⬅
+</button>
+
+<img id="modalImage">
+
+<button id="nextImage">
+➡
+</button>
+
+<button id="closeModal">
+X
+</button>
+
+</div>
+
+<!-- CONTACT -->
+<div id="contact">
+
+<h3>Contact Us</h3>
+
+<p>Email: info@evcars.com</p>
+
+<p>Phone: (123) 456-7890</p>
+
+</div>
+
+<script
+type="module"
+src="script.js"
+></script>
+
+</body>
+</html>
