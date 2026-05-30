@@ -12,8 +12,7 @@ import {
     deleteDoc,
     doc,
     updateDoc
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import { app, db } from "./firebase.js";
 
@@ -24,45 +23,25 @@ const auth = getAuth(app);
 const logoutBtn = document.getElementById("logoutBtn");
 
 onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+        window.location.href = "./login.html"; // 👈 Updated to secure relative path
+        return;
+    }
 
-if(!user){
+    const adminRef = doc(db, "admins", user.uid);
+    const adminSnap = await getDoc(adminRef);
 
-window.location.href =
-"login.html";
-
-return;
-
-}
-
-const adminRef =
-doc(
-db,
-"admins",
-user.uid
-);
-
-const adminSnap =
-await getDoc(adminRef);
-
-if(!adminSnap.exists()){
-
-alert(
-"Access Denied"
-);
-
-await signOut(auth);
-
-window.location.href =
-"login.html";
-
-}
-
+    if (!adminSnap.exists()) {
+        alert("Access Denied");
+        await signOut(auth);
+        window.location.href = "./login.html"; // 👈 Updated to secure relative path
+        }
 });
 
 if (logoutBtn) {
     logoutBtn.addEventListener("click", async function() {
         await signOut(auth);
-        window.location.href = "login.html";
+        window.location.href = "./login.html"; // 👈 Updated to secure relative path
     });
 }
 
@@ -124,7 +103,7 @@ async function uploadToCloudinary(files) {
 }
 
 // ======================
-// LOAD PRODUCTS
+// LOAD PRODUCTS (With Semantic Classes)
 // ======================
 async function loadProducts() {
     if (!adminProducts) return;
@@ -136,7 +115,7 @@ async function loadProducts() {
         const item = docItem.data();
         html += `
             <div class="card">
-                <img src="${item.images?.[0] || 'https://via.placeholder.com/200'}" width="200">
+                <img src="${item.images?.[0] || 'https://via.placeholder.com/200'}" class="product-img" alt="Car Image">
                 <h3>${item.name}</h3>
                 <p>Brand: ${item.brand}</p>
                 <p>💰 $${item.price}</p>
@@ -165,7 +144,7 @@ if (imageFile) {
             reader.onload = function(e) {
                 imagePreviewContainer.innerHTML += `
                     <div class="previewCard">
-                        <img src="${e.target.result}" width="120" class="previewImage">
+                        <img src="${e.target.result}" class="previewImage" alt="Preview">
                     </div>
                 `;
             };

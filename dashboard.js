@@ -1,5 +1,6 @@
 import {
 getAuth,
+onAuthStateChanged,
 signOut
 }
 from
@@ -11,10 +12,25 @@ from "./firebase.js";
 const auth =
 getAuth(app);
 
+onAuthStateChanged(
+auth,
+function(user){
+
+if(!user){
+
+window.location.href =
+"user-login.html";
+
+}
+
+}
+);
+
 document
 .getElementById("logoutBtn")
 .addEventListener(
 "click",
+
 async function(){
 
 await signOut(auth);
@@ -22,4 +38,5 @@ await signOut(auth);
 window.location.href =
 "user-login.html";
 
-});
+}
+);

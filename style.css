@@ -281,3 +281,84 @@ border-radius:8px;
 #loginError{
 color:red;
 }
+
+/* Orders Container Layout */
+.order-card {
+    border: 1px solid #e2e8f0;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.order-id {
+    margin-top: 0;
+    color: #1a202c;
+    font-size: 1.1rem;
+}
+
+.order-items-list {
+    padding-left: 20px;
+    margin: 8px 0;
+    color: #4a5568;
+}
+
+.order-total {
+    font-size: 1.05rem;
+    color: #2d3748;
+    margin-bottom: 0;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.status-pending {
+    color: #b7791f;
+    background-color: #fefcbf;
+}
+
+.status-completed {
+    color: #22543d;
+    background-color: #c6f6d5;
+}
+
+/* Messages */
+.error-msg, .empty-msg {
+    text-align: center;
+    color: #718096;
+    margin-top: 40px;
+}
+
+*register button {
+    background-color: #2d3748;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+*register button:hover {
+    background-color: #4a5568;
+}
+
+*login button {
+    background-color: #2d3748;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+*login button:hover {
+    background-color: #4a5568;
+}
