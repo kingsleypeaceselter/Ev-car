@@ -252,3 +252,32 @@ repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
 padding:20px;
 }
+
+.loginBox{
+max-width:400px;
+margin:100px auto;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.loginBox input{
+padding:12px;
+font-size:16px;
+}
+
+.loginBox button{
+padding:12px;
+background:black;
+color:white;
+border:none;
+cursor:pointer;
+border-radius:8px;
+}
+
+#loginError{
+color:red;
+}

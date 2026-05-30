@@ -153,7 +153,7 @@ ${thumbnails}
 </p>
 
 <button id="buyNow">
-Add To Cart
+Place Order
 </button>
 
 <button id="favoriteBtn">
@@ -169,6 +169,8 @@ Add To Cart
 activateGallery(images);
 
 startImageSlider(images);
+
+setupBuyNow(item);
 
 }
 
@@ -313,3 +315,61 @@ html;
 // ======================
 
 loadProduct();
+
+// ======================
+// PLACE ORDER
+// ======================
+
+function setupBuyNow(item){
+
+const buyBtn =
+document.getElementById(
+"buyNow"
+);
+
+buyBtn.addEventListener(
+"click",
+
+function(){
+
+let cart =
+
+JSON.parse(
+localStorage.getItem("cart")
+) || [];
+
+const existing =
+cart.find(product =>
+
+product.name === item.name
+
+);
+
+if(existing){
+
+existing.quantity++;
+
+}else{
+
+cart.push({
+
+...item,
+quantity:1
+
+});
+
+}
+
+localStorage.setItem(
+"cart",
+JSON.stringify(cart)
+);
+
+window.location.href =
+"checkout.html";
+
+}
+
+);
+
+}

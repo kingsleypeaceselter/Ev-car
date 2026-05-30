@@ -21,7 +21,7 @@ const firebaseConfig = {
 
 };
 
-const app =
+export const app =
 initializeApp(firebaseConfig);
 
 export const db =

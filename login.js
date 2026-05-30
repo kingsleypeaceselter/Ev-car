@@ -1,19 +1,68 @@
-document.addEventListener("DOMContentLoaded", function () {
+import {
 
-const form = document.getElementById("loginForm");
-const msg = document.getElementById("msg");
+getAuth,
+signInWithEmailAndPassword
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+}
 
-  const password = document.getElementById("password").value;
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-  if (password === "12345") {
-    localStorage.setItem("adminLoggedIn", "true");
-    window.location.href = "admin.html";
-  } else {
-    msg.textContent = "Wrong password";
-  }
-});
+import { app }
+from "./firebase.js";
 
-});
+const auth =
+getAuth(app);
+
+const loginBtn =
+document.getElementById(
+"loginBtn"
+);
+
+const errorText =
+document.getElementById(
+"loginError"
+);
+
+loginBtn.addEventListener(
+"click",
+
+async function(){
+
+const email =
+document.getElementById(
+"email"
+).value;
+
+const password =
+document.getElementById(
+"password"
+).value;
+
+try{
+
+await signInWithEmailAndPassword(
+
+auth,
+email,
+password
+
+);
+
+localStorage.setItem(
+"adminLoggedIn",
+"true"
+);
+
+window.location.href =
+"admin.html";
+
+}catch(error){
+
+errorText.textContent =
+error.message;
+
+}
+
+}
+);
