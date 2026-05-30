@@ -155,6 +155,9 @@ customerName.value,
 customerEmail:
 customerEmail.value,
 
+status:
+"Pending",
+
 customerPhone:
 customerPhone.value,
 

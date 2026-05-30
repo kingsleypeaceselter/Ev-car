@@ -4,14 +4,16 @@ import {
     signOut 
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-import { 
-    collection, 
-    getDocs, 
-    addDoc, 
-    deleteDoc, 
-    doc, 
-    updateDoc 
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+    collection,
+    getDocs,
+    getDoc,
+    addDoc,
+    deleteDoc,
+    doc,
+    updateDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import { app, db } from "./firebase.js";
 
@@ -21,16 +23,45 @@ import { app, db } from "./firebase.js";
 const auth = getAuth(app);
 const logoutBtn = document.getElementById("logoutBtn");
 
-onAuthStateChanged(auth, (user) => {
-    if (!user) {
-        window.location.href = "login.html";
-    }
+onAuthStateChanged(auth, async (user) => {
+
+if(!user){
+
+window.location.href =
+"login.html";
+
+return;
+
+}
+
+const adminRef =
+doc(
+db,
+"admins",
+user.uid
+);
+
+const adminSnap =
+await getDoc(adminRef);
+
+if(!adminSnap.exists()){
+
+alert(
+"Access Denied"
+);
+
+await signOut(auth);
+
+window.location.href =
+"login.html";
+
+}
+
 });
 
 if (logoutBtn) {
     logoutBtn.addEventListener("click", async function() {
         await signOut(auth);
-        localStorage.removeItem("adminLoggedIn");
         window.location.href = "login.html";
     });
 }
