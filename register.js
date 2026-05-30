@@ -52,8 +52,8 @@ db,
 userCredential.user.uid
 ),
 {
-name,
-email
+name: name,
+email: email
 }
 );
 
