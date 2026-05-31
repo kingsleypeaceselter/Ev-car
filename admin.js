@@ -32,7 +32,7 @@ onAuthStateChanged(auth, async (user) => {
     const adminSnap = await getDoc(adminRef);
 
     if (!adminSnap.exists()) {
-        alert("Access Denied");
+        alert("Access Denied: Admins Only");
         await signOut(auth);
         window.location.href = "./login.html"; // 👈 Updated to secure relative path
         }
