@@ -41,13 +41,14 @@ document.getElementById(
 
 try{
 
+const result =
 await signInWithEmailAndPassword(
-
 auth,
 email,
 password
-
 );
+
+console.log(result.user.uid);
 
 window.location.href =
 "admin.html";

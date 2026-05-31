@@ -55,7 +55,7 @@ onAuthStateChanged(auth, async (user) => {
     } else {
         // No user logged in -> Redirect back to login block
         alert("Please Login First to complete your checkout.");
-        window.location.href = "login.html";
+        window.location.href = "user-login.html";
     }
 });
 
