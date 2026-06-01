@@ -1,338 +1,416 @@
-body{
+/* ==========================================================================
+   1. GLOBAL VARIABLES & RESET
+   ========================================================================== */
+:root {
+    --bg-main: #f8fafc;
+    --bg-surface: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    
+    /* Brand Accent Colors */
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --accent-light: #eff6ff;
+    
+    /* VIBRANT EV GREEN LOGO THEME */
+    --ev-green: #00df89; /* Electric Lime Green */
+    --ev-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 223, 137, 0.6);
+    
+    /* PURE GOLD YELLOW BADGE THEME */
+    --gold: #ffcc00; /* Pure Vibrant Yellow */
 
-font-family:Arial;
-padding:20px;
-background:#f5f5f5;
-
+    /* Semantic Status Colors */
+    --success: #16a34a;
+    --success-bg: #f0fdf4;
+    --warning: #ea580c;
+    --warning-bg: #fff7ed;
+    --danger: #dc2626;
+    --danger-bg: #fef2f2;
+    
+    /* Structural Rules */
+    --border: #e2e8f0;
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --radius-sm: 6px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-#products{
-
-display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
-
-gap:20px;
-
+* {
+    box-sizing: border-box;
 }
 
-.card{
-
-background:white;
-padding:15px;
-border-radius:12px;
-
-box-shadow:
-0 2px 10px rgba(0,0,0,0.1);
-
-transition:0.3s;
-
-}
-
-.card:hover{
-
-transform:translateY(-5px);
-
-}
-
-.card img{
-
-width:100%;
-height:200px;
-object-fit:cover;
-
-border-radius:10px;
-
-}
-
-button{
-
-padding:10px 15px;
-border:none;
-border-radius:8px;
-cursor:pointer;
-margin:5px;
-
-}
-
-.addBtn{
-
-background:black;
-color:white;
-
-}
-
-.favBtn{
-
-background:red;
-color:white;
-
-}
-
-.available{
-
-color:green;
-font-weight:bold;
-background:#e6ffed;
-}
-
-.preorder{
-
-color:orange;
-font-weight:bold;
-
-}
-
-.outofstock{
-
-color:red;
-font-weight:bold;
-
-}
-
-.badge{
-
-background:gold;
-padding:5px 10px;
-border-radius:8px;
-display:inline-block;
-margin:10px 0;
-
-}
-
-#galleryModal{
-
-position:fixed;
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-background:rgba(0,0,0,0.9);
-
-display:none;
-
-justify-content:center;
-align-items:center;
-
-}
-
-#modalImage{
-
-width:80%;
-max-width:700px;
-
-}
-
-#closeModal{
-
-position:absolute;
-top:20px;
-right:20px;
-
-}
-
-.qtyInput{
-
-width:60px;
-padding:8px;
-margin:10px 0;
-
-}
-
-button:disabled{
-
-background:gray;
-cursor:not-allowed;
-opacity:0.7;
-
-}
-
-#imagePreviewContainer{
-
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:20px;
-
-}
-
-.previewImage{
-
-border-radius:10px;
-border:2px solid #ccc;
-object-fit:cover;
-height:120px;
-
-}
-
-.autoSlider{
-
-transition:0.5s;
-cursor:pointer;
-
-}
-
-.productPage{
-display:flex;
-gap:40px;
-padding:30px;
-flex-wrap:wrap;
-}
-
-.productGallery{
-flex:1;
-}
-
-.productInfo{
-flex:1;
-}
-
-.mainProductImage{
-width:100%;
-max-width:500px;
-border-radius:10px;
-}
-
-.thumbContainer{
-display:flex;
-gap:10px;
-margin-top:10px;
-flex-wrap:wrap;
-}
-
-.thumbImage{
-cursor:pointer;
-border:2px solid #ccc;
-border-radius:6px;
-transition:0.3s;
-}
-
-.thumbImage:hover{
-transform:scale(1.1);
-border-color:blue;
-}
-
-.productInfo h1{
-font-size:35px;
-margin-bottom:20px;
-}
-
-.productInfo p{
-font-size:18px;
-margin:10px 0;
-}
-
-#buyNow,
-#favoriteBtn{
-padding:12px 20px;
-border:none;
-cursor:pointer;
-margin-top:20px;
-margin-right:10px;
-border-radius:8px;
-font-size:16px;
-}
-
-#buyNow{
-background:black;
-color:white;
-}
-
-#favoriteBtn{
-background:red;
-color:white;
-}
-
-#relatedProducts{
-display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-padding:20px;
-}
-
-.loginBox{
-max-width:400px;
-margin:100px auto;
-padding:30px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);
-display:flex;
-flex-direction:column;
-gap:15px;
-}
-
-.loginBox input{
-padding:12px;
-font-size:16px;
-}
-
-.loginBox button{
-padding:12px;
-background:black;
-color:white;
-border:none;
-cursor:pointer;
-border-radius:8px;
-}
-
-#loginError{
-color:red;
-}
-
-/* Orders Container Layout */
-.order-card {
-    border: 1px solid #e2e8f0;
+body {
+    font-family: var(--font);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    margin: 0;
     padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
 }
 
-.order-id {
+/* ==========================================================================
+   2. TYPOGRAPHY & FIXED EV GREEN LOGO
+   ========================================================================== */
+h1, h2, h3 {
     margin-top: 0;
-    color: #1a202c;
-    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
+}
+
+/* FIXED: Green EV Logo with custom shadow drops */
+.ev-logo {
+    color: var(--ev-green) !important;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-shadow: var(--ev-shadow);
+    display: inline-block;
+    margin-right: 5px;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+/* ==========================================================================
+   3. INPUTS & FULL COMPACT VIEWPORT WIDTHS
+   ========================================================================== */
+input, textarea, select {
+    font-family: var(--font);
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    font-size: 15px;
+    transition: var(--transition);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* ==========================================================================
+   4. BUTTONS & ACTIONS
+   ========================================================================== */
+button {
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+button:disabled {
+    background-color: var(--text-muted) !important;
+    color: var(--bg-surface) !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none !important;
+}
+
+.addBtn, #buyNow {
+    background-color: var(--text-primary);
+    color: var(--bg-surface);
+}
+
+.addBtn:hover, #buyNow:hover {
+    background-color: #1e293b;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+.favBtn, #favoriteBtn {
+    background-color: var(--danger-bg);
+    color: var(--danger);
+    border: 1px solid rgba(220, 38, 38, 0.1);
+}
+
+#logoutBtn {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+}
+
+#logoutBtn:hover {
+    background-color: var(--danger-bg);
+    color: var(--danger);
+}
+
+/* ==========================================================================
+   5. PERFECT FIT-TO-SCREEN GRID SYSTEM (ALL DEVICES)
+   ========================================================================== */
+#products, #relatedProducts, #adminProducts, #ordersContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); 
+    gap: 20px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+/* ==========================================================================
+   6. CARDS & UPDATED YELLOW TOP RATED BADGES
+   ========================================================================== */
+.card {
+    position: relative; 
+    background-color: var(--bg-surface);
+    padding: 16px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.card img, .product-img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+}
+
+/* FIXED: Bold Solid Yellow Badge Pinned to the Left Top Corner */
+.badge {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    background-color: var(--gold) !important;
+    color: #000000 !important; /* High contrast black text for readability */
+    font-size: 11px;
+    font-weight: 800;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.card h3 {
+    font-size: 1.25rem;
+    margin: 14px 0 6px 0;
+}
+
+.card p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 4px 0;
+}
+
+/* ==========================================================================
+   7. INTERACTIVE LIVE STATUS INDICATORS
+   ========================================================================== */
+.available {
+    color: var(--success);
+    background-color: var(--success-bg);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+}
+
+.preorder {
+    color: var(--warning);
+    background-color: var(--warning-bg);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+}
+
+.outofstock {
+    color: var(--danger);
+    background-color: var(--danger-bg);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   8. COMPACT RESPONSIVE SINGLE ITEM LAYOUT VIEWPORTS
+   ========================================================================== */
+.productPage {
+    display: flex;
+    gap: 30px;
+    padding: 20px 0;
+    flex-wrap: wrap; 
+}
+
+.productGallery, .productInfo {
+    flex: 1 1 300px; 
+    width: 100%;
+}
+
+.mainProductImage {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+}
+
+.thumbContainer {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.thumbImage {
+    width: 70px;
+    height: 50px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.thumbImage:hover {
+    border-color: var(--accent);
+}
+
+.qtyInput {
+    width: 70px;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* ==========================================================================
+   9. AUTH LOGIN BOX SYSTEMS
+   ========================================================================== */
+.loginBox {
+    width: 100%;
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ==========================================================================
+   10. FILE UPLOADS & WORKFLOWS
+   ========================================================================== */
+#imagePreviewContainer {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.previewImage {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    object-fit: cover;
+    height: 90px;
+    width: 120px;
+}
+
+.order-card {
+    border: 1px solid var(--border);
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-surface);
+    box-shadow: var(--shadow-sm);
 }
 
 .order-items-list {
     padding-left: 20px;
     margin: 8px 0;
-    color: #4a5568;
+    color: var(--text-secondary);
 }
 
 .order-total {
-    font-size: 1.05rem;
-    color: #2d3748;
-    margin-bottom: 0;
+    font-weight: 700;
+    color: var(--accent);
 }
 
-/* Status Badges */
-.status-badge {
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 0.85rem;
+/* ==========================================================================
+   11. LIGHTBOX MODAL LAYER GALLERY OVERLAY
+   ========================================================================== */
+#galleryModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.95);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
 }
 
-.status-pending {
-    color: #b7791f;
-    background-color: #fefcbf;
+#modalImage {
+    width: 100%;
+    max-width: 750px;
+    height: auto;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
 }
 
-.status-completed {
-    color: #22543d;
-    background-color: #c6f6d5;
+#closeModal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
 }
-
-/* Messages */
-.error-msg, .empty-msg {
-    text-align: center;
-    color: #718096;
-    margin-top: 40px}
-    
-
- 
