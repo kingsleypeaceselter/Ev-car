@@ -54,26 +54,38 @@ body {
     min-height: 100vh;
     width: 100%;
     overflow-x: hidden;
+    font-family: poppins' san-serif;
+}
+
+html, body {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* Adjust if you have a fixed header */ color: var(--success);
+    background-color: var(--success-bg);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+
 }
 
 /* ==========================================================================
    2. TYPOGRAPHY & FIXED EV GREEN LOGO
    ========================================================================== */
-h1, h2, h3 {
+ h3 {
     margin-top: 0;
     font-weight: 700;
     letter-spacing: -0.02em;
+
 }
 
-h1 {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
+h3 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem); 
     margin-bottom: 25px;
     border-bottom: 2px solid var(--border);
     padding-bottom: 10px;
 }
 
 /* FIXED: Green EV Logo with custom shadow drops */
-.ev-logo {
+.MYCARS {
     color: var(--ev-green) !important;
     font-weight: 800;
     text-transform: uppercase;
@@ -414,3 +426,5 @@ button:disabled {
     width: 40px;
     height: 40px;
 }
+
+    

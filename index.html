@@ -29,18 +29,31 @@ content="electric cars, EV cars, tesla, vehicles"
 
 <body>
 
-  <h1><a href="index.html">
-    <span class="Ev-logo">EV</span> Car</a>
-  </h1>
+  <div class="nav-container">
+  <div class="left-part">
+  <h1><a href="#home" class="MYCARS">MYCARS</a></h1>
+  </div>
 
+<br>
+  <div class="right-part">
+    <a href="#home">Home</a>
+  </div>
 
-<!--registration-->
+    <a href="#products">Products</a></div>
+
+    <a href="#contact us">Contact us</a>
+<br>
+    <a href="#about me">About me</a>
+    </ul>
+    </li>
+</nav>  
+  <!-- AUTH LINKS -->
 <div class="authLinks">
-
+<br>
 <a href="register.html">
 Create Account
 </a>
-
+<br>
 <a href="user-login.html">
 Login
 </a>
@@ -56,10 +69,10 @@ id="searchInput"
 placeholder="Search cars..."
 >
 
-<select id="sortSelect">
+<select id="priceSelect">
 
 <option value="">
-Sort Products
+Sort By Price
 </option>
 
 <option value="low">
@@ -75,20 +88,19 @@ Price High To Low
 <!-- PRODUCTS -->
 <div id="products"></div>
 
-<!-- PAGINATION -->
-<div id="pagination">
 
-<button id="prevBtn">
-Prev
-</button>
-
-<span id="pageInfo"></span>
-
-<button id="nextBtn">
-Next
-</button>
-
-</div>
+    
+    <selection id="home"></selection>
+    <selection id="products"></selection>
+    <selection id="contact us"></selection>
+    <selection id="about Me"></selection>
+    
+<!--contact us-->
+<div class="contact us">
+<h2>Contact Us</h2>
+<p>email: info@evcars.com</p>
+<p>phone: +201143203547</p>
+<p>address: 123 EV Street, Electric City</p>
 
 <!-- CART -->
 <h2>Cart 🛒</h2>
@@ -114,17 +126,6 @@ Next
 <button id="closeModal">
 X
 </button>
-
-</div>
-
-<!-- CONTACT -->
-<div id="contact">
-
-<h3>Contact Us</h3>
-
-<p>Email: info@evcars.com</p>
-
-<p>Phone: (123) 456-7890</p>
 
 </div>
 
