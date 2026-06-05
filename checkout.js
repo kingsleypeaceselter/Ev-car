@@ -1,3 +1,4 @@
+
 import { db } from "./firebase.js";
 import { 
     getAuth, 
@@ -12,14 +13,20 @@ import {
 
 const auth = getAuth();
 
-// DOM Elements
+// ==========================================
+// DOM ELEMENTS (HTML Layout Selectors)
+// ==========================================
 const nameInput = document.getElementById("customerName");
 const emailInput = document.getElementById("customerEmail");
 const phoneInput = document.getElementById("customerPhone");
 const addressInput = document.getElementById("customerAddress");
 const placeOrderBtn = document.getElementById("placeOrderBtn");
+const paymentMethod = document.getElementById("paymentMethod");
+const bankDetails = document.getElementById("bankDetails");
 
-// Global variables for data tracking
+// ==========================================
+// GLOBAL STATE DATA VARIABLES
+// ==========================================
 let currentUserData = null;
 let cart = []; 
 let total = 0;
@@ -29,7 +36,7 @@ let total = 0;
 // ==========================================
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-        // User logged in -> Autofill email from Auth
+        // User logged in -> Autofill email from Auth account credentials
         emailInput.value = user.email;
 
         try {
@@ -39,7 +46,7 @@ onAuthStateChanged(auth, async (user) => {
 
             if (userDocSnap.exists()) {
                 currentUserData = userDocSnap.data();
-                // Autofill name from Firestore profile
+                // Autofill name from Firestore profile document rules
                 nameInput.value = currentUserData.name || "No Name Provided";
             } else {
                 console.warn("User profile document not found in Firestore!");
@@ -53,7 +60,7 @@ onAuthStateChanged(auth, async (user) => {
         loadCartData();
 
     } else {
-        // No user logged in -> Redirect back to login block
+        // No user logged in -> Redirect back to user login form setup
         alert("Please Login First to complete your checkout.");
         window.location.href = "user-login.html";
     }
@@ -63,7 +70,7 @@ onAuthStateChanged(auth, async (user) => {
 // 2. LOAD LOCAL BASKET DATA (From LocalStorage)
 // ==========================================
 function loadCartData() {
-    // Pull active cart items saved from index.html / product.html
+    // Pull active cart items saved from storefront interactions
     cart = JSON.parse(localStorage.getItem("cart")) || [];
     
     if (cart.length === 0) {
@@ -72,16 +79,28 @@ function loadCartData() {
         return;
     }
 
-    // Calculate total price structure
+    // Calculate total price structure seamlessly
     total = cart.reduce((sum, item) => sum + (Number(item.price) * (item.quantity || 1)), 0);
     console.log(`Cart Loaded. Total: $${total}`, cart);
 }
 
 // ==========================================
-// 3. PLACE ORDER ACTION
+// 3. PAYMENT METHOD SELECTION LISTENER
+// ==========================================
+// FIXED: Placed safely out in the open so it works immediately when the page loads!
+paymentMethod.addEventListener("change", function() {
+    if (paymentMethod.value === "bank") {
+        bankDetails.style.display = "block";
+    } else {
+        bankDetails.style.display = "none";
+    }
+});
+
+// ==========================================
+// 4. PLACE ORDER ACTION WORKFLOW
 // ==========================================
 async function handlePlaceOrder(e) {
-    e.preventDefault(); // Stop page from refreshing
+    e.preventDefault(); // Stop the form from refreshing the browser window
 
     const user = auth.currentUser;
     if (!user) {
@@ -95,45 +114,49 @@ async function handlePlaceOrder(e) {
         return;
     }
 
-    // Disable button to prevent multi-clicking while server works
+    // Disable button to prevent multi-clicking while server database writes execute
     placeOrderBtn.disabled = true;
     placeOrderBtn.innerText = "Processing Order...";
 
     try {
-        // Construct the target safe schema object structure
+        // FIXED: Cleaned up the duplicates into one structured data payload object
         const orderData = {
             userId: user.uid,
             customerName: currentUserData?.name || nameInput.value,
             customerEmail: user.email,
             customerPhone: phoneInput.value.trim(),
             customerAddress: addressInput.value.trim(),
+            paymentMethod: paymentMethod.value, // Captured seamlessly
             status: "Pending",
             items: cart,
             total: total,
-            createdAt: new Date() // Server timestamp reference tracking
+            createdAt: new Date() // Server tracking reference timestamp
         };
 
-        // Write directly to your main firestore "orders" stream tracker
+        // Write directly to your main firestore "orders" data storage collection
         const orderRef = await addDoc(collection(db, "orders"), orderData);
         console.log("Order placed successfully! Document ID:", orderRef.id);
 
-        // Clear shopping basket from machine storage after checkout success
+        // Clear shopping basket cache from local storage after checkout success
         localStorage.removeItem("cart");
 
         alert("🎉 Your order has been placed successfully!");
         
-        // Redirect them to their personal profile dashboard page to view their order status tracking log
-        window.location.href = "orders.html";
+        // Redirect them to their personal profile dashboard view tracking log
+window.location.href = "my-orders.html";
+
 
     } catch (error) {
         console.error("Error processing your checkout database write:", error);
         alert("Something went wrong saving your order. Please try again.");
         
-        // Re-enable clicker button on failure tracking setups
+        // Re-enable interactive click button on failures
         placeOrderBtn.disabled = false;
         placeOrderBtn.innerText = "Place Order";
     }
 }
 
-// Event Listener activation
+// ==========================================
+// 5. EVENT ACTIVATOR DELEGATION
+// ==========================================
 placeOrderBtn.addEventListener("click", handlePlaceOrder);

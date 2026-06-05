@@ -56,6 +56,10 @@ async function loadOrders(user) {
                         <strong>Status:</strong> 
                         <span class="status-badge status-${order.status.toLowerCase()}">${order.status}</span>
                     </p>
+                    <p>
+<strong>Payment:</strong>
+${order.paymentMethod}
+</p>
                     <div class="order-details">
                         <strong>Items:</strong> 
                         ${itemsHtml}
