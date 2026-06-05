@@ -1,0 +1,16 @@
+# MYCAR - Electric Vehicle Marketplace
+
+A full-stack, serverless e-commerce web application designed for browsing, searching, and managing electric vehicles. This project serves as a foundational piece of my development portfolio.
+
+## 🚀 Live Demo
+[Insert link to your live hosted site here, e.g., GitHub Pages or Netlify]
+
+## 🛠️ Tech Stack & Features
+- **Frontend:** Semantic HTML5, Custom CSS Layouts, Modular JavaScript (ES6+).
+- **Database & Auth:** Firebase Auth and Cloud Firestore for relational user/admin management.
+- **Media Management:** Direct serverless uploads via Cloudinary API integration.
+- **Client State:** Persistent local storage integration for the shopping cart and favorite bookmarks.
+
+## 📁 Architecture Highlights
+- **Storefront Engine (`script.js`):** Features automated background item card image sliders, dynamic high-to-low price sorting filters, and lookahead search index match inputs.
+- **Manager Suite (`admin.js`):** A secure dashboard restricted to verified administrative UIDs allowing image transformations and real-time inventory adjustments.
